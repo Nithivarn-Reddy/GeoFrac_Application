@@ -28,10 +28,10 @@
   color: #61dafb;
 }
 
-/* .table {
-  border-collapse: separate;
-  border-spacing: 1em;
+/* .table thead th {
+  vertical-align: top;
 } */
+
 /* .table td {
   padding-left: 2.75em;
   padding-right: 2.75em;
