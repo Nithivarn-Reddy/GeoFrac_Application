@@ -56,15 +56,15 @@ class Wells extends Component {
         ).value;
 
         Format +=
-          "********************************** \n" +
+          "************************************************************* \n" +
           "Pumping Schedule for Stage-" +
           index +
-          "\n ********************************** \n";
+          "\n___________________________________ \n";
         Format +=
           "Schedule Division \n" +
           scheduleDivision_value +
           "\n" +
-          "********************************** \n";
+          "************************************************************* \n";
 
         // console.log(
         //   " Schedule division value of stage" +
@@ -80,17 +80,17 @@ class Wells extends Component {
           "Total Pumping Time \n" +
           totalPumpingTime_value +
           "\n" +
-          "********************************** \n";
+          "************************************************************* \n";
 
         Format +=
           "Input time (cumulative), all parameters seperated by commas. \n" +
-          "********************************** \n";
+          "************************************************************* \n";
         Format +=
           "To simulate shut-in use zero injection rate. \n" +
-          "********************************** \n";
+          "************************************************************* \n";
         Format +=
           "Time (min),Injection rate (bpm),Viscosity (cP),density of injection fluid (lb/gal),fluid time step during shut-in (sec),carter Leak-off-coefficient (m/s^0.5),fluid compressibility (1/Pa)" +
-          "\n ********************************** \n";
+          "\n************************************************************* \n";
 
         let row_data = "";
         for (let idx = 1; idx <= scheduleDivision_value; idx++) {
@@ -116,7 +116,7 @@ class Wells extends Component {
             document.getElementById(carterL_id).value +
             "," +
             document.getElementById(fCom_id).value +
-            "\n";
+            "\n************************************************************* \n\n";
           // console.log("Id -- " + time_id);
 
           // console.log(

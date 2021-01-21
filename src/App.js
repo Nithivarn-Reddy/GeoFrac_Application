@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RockwellAndWellBornContainer from "./components/RockwellAndWellBornContainer";
 import PumpingSchedule from "./components/PumpingSchedule";
 import Plots from "./components/Plots";
+import TechnicalData from "./components/TechnicalData";
 
 function App() {
   return (
@@ -13,13 +14,15 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact={true} />
-          <Route path="/rockwellWellborn" exact={true}>
+          <Route path="/wellboreRockData" exact={true}>
             <RockwellAndWellBornContainer />
           </Route>
-          <Route path="/pumpingSchedule" exact>
+          <Route path="/pumpingData" exact>
             <PumpingSchedule />
           </Route>
-          <Route path="/technicalData" exact />
+          <Route path="/technicalData" exact>
+            <TechnicalData />
+          </Route>
           <Route path="/fldInput" exact />
           <Route path="/execution" exact />
           <Route path="/plots" exact>

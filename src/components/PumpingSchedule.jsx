@@ -29,7 +29,7 @@ class PumpingSchedule extends Component {
     return (
       // style={{ backgroundColor: "#f5f2f2" }}
       <Container>
-        <h1>Pumping Schedule</h1>
+        {/* <h1>Pumping Schedule</h1> */}
         {/* style={{ paddingLeft: 200, paddingTop: 30 }} */}
         <div>
           <Row>
@@ -46,7 +46,7 @@ class PumpingSchedule extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col style={{ marginTop: 30 }} lg="2">
+            <Col style={{ marginTop: 30 }} lg="3">
               <Button
                 variant="primary"
                 onClick={this.handleSubmit}
@@ -69,7 +69,7 @@ class PumpingSchedule extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col lg="2" style={{ marginTop: 30 }}>
+            <Col lg="3" style={{ marginTop: 30 }}>
               <Button variant="primary" type="submit">
                 Read from file
               </Button>

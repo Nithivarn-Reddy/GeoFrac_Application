@@ -8,11 +8,11 @@ class NavBar extends Component {
       <div>
         <Navbar bg="dark" variant="dark">
           <Nav className="mr-auto">
-            <Nav.Link href="rockwellWellborn">Rockwell & WellBorn</Nav.Link>
-            <Nav.Link href="pumpingSchedule">Pumping Schedule</Nav.Link>
+            <Nav.Link href="wellboreRockData">Wellbore and Rock Data</Nav.Link>
+            <Nav.Link href="pumpingData">Pumping Data</Nav.Link>
             <Nav.Link href="technicalData">Technical Data</Nav.Link>
             <Nav.Link href="fldInput">FLD Input</Nav.Link>
-            <Nav.Link href="execution">.exe Execution</Nav.Link>
+            <Nav.Link href="execution">exe Execution</Nav.Link>
             <Nav.Link href="plots">Plots</Nav.Link>
             <Nav.Link href="manual">Manual</Nav.Link>
           </Nav>

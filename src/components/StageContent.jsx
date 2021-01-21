@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Container, Form, FormLabel, Button, Table } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  FormLabel,
+  Button,
+  Table,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 class StageContent extends Component {
   state = {
@@ -86,32 +94,41 @@ class StageContent extends Component {
     const tpt = this.props.id + "tpt";
     return (
       <Container>
-        <Form.Group>
-          <Form.Label>Schedule Division</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder=""
-            name="scheduleDivision"
-            value={this.state.stageData.scheduleDivision}
-            onChange={this.handleChange}
-            id={schd}
-          />
+        <Form.Group as={Row}>
+          <Form.Label column sm="3">
+            Schedule Division
+          </Form.Label>
+          <Col sm="3">
+            <Form.Control
+              type="text"
+              placeholder=""
+              name="scheduleDivision"
+              value={this.state.stageData.scheduleDivision}
+              onChange={this.handleChange}
+              id={schd}
+            />
+          </Col>
+          <Button variant="primary" onClick={this.handleGo}>
+            {" "}
+            Go
+          </Button>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Total pumping time</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder=""
-            name="tPumpingTime"
-            value={this.state.stageData.tPumpingTime}
-            onChange={this.handleChange}
-            id={tpt}
-          />
+        <Form.Group as={Row}>
+          <Form.Label column sm="3">
+            Total pumping time
+          </Form.Label>
+          <Col sm="3">
+            <Form.Control
+              type="text"
+              placeholder=""
+              name="tPumpingTime"
+              value={this.state.stageData.tPumpingTime}
+              onChange={this.handleChange}
+              id={tpt}
+            />
+          </Col>
         </Form.Group>
-        <Button variant="primary" onClick={this.handleGo}>
-          {" "}
-          Go
-        </Button>
+
         <div style={{ marginTop: 10 }}>
           <Table
             striped
@@ -120,19 +137,25 @@ class StageContent extends Component {
             style={{ tableLayout: "auto", backgroundColor: "white" }}
           >
             <thead>
-              <th style={{ verticalAlign: "top" }}>Time</th>
-              <th style={{ verticalAlign: "top" }}>Injection Rate</th>
-              <th style={{ verticalAlign: "top" }}>Viscosity(cP)</th>
-              <th style={{ verticalAlign: "top" }}>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
+                Time
+              </th>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
+                Injection Rate
+              </th>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
+                Viscosity(cP)
+              </th>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
                 Density of Injection fluid(lib/gal)
               </th>
-              <th style={{ verticalAlign: "top" }}>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
                 Fluid Time step during shut-in (sec)
               </th>
-              <th style={{ verticalAlign: "top" }}>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
                 Carter leak off coefficient (m/s^0.5)
               </th>
-              <th style={{ verticalAlign: "top" }}>
+              <th style={{ verticalAlign: "middle", fontSize: "10pt" }}>
                 Fluid compressibility (1/Pa)
               </th>
             </thead>
