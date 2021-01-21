@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Container, Form, Col, FormGroup, Button } from "react-bootstrap";
+import { Container, Form, Col, FormGroup, Button, Row } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
 
   handleSubmit = () => {
     const { credentials } = { ...this.state };
-    if (credentials.userName !== "Raj") {
+    if (credentials.userName !== "Admin") {
       console.log("please enter correct username");
       this.props.history.push("/");
       document.getElementById("message").innerHTML =
@@ -26,7 +26,7 @@ class Login extends Component {
         "Please enter correct credentials";
       document.getElementById("message").style.color = "red";
     } else {
-      sessionStorage.setItem("userName", "Raj");
+      sessionStorage.setItem("userName", "Admin");
       sessionStorage.setItem("password", "1234");
       this.props.history.push("/wellboreRockData");
     }
@@ -46,11 +46,12 @@ class Login extends Component {
     return (
       <Container className="base-container">
         <p id="message"></p>
-        <h2 style={{ padding: 10 }}>Sign In</h2>
+        <h2 style={{ padding: 10 }}>Login</h2>
         <Form>
-          <Col>
-            <FormGroup>
+          <Col sm="3">
+            <Form.Group>
               <Form.Label for="userName">User Name</Form.Label>
+
               <Form.Control
                 type="text"
                 name="userName"
@@ -59,10 +60,10 @@ class Login extends Component {
                 onChange={this.handleChange}
                 autoComplete="userName"
               />
-            </FormGroup>
+            </Form.Group>
           </Col>
-          <Col>
-            <FormGroup>
+          <Col sm="3">
+            <Form.Group>
               <Form.Label for="password">Password</Form.Label>
               <Form.Control
                 type="password"
@@ -72,12 +73,12 @@ class Login extends Component {
                 onChange={this.handleChange}
                 autoComplete="password"
               />
-            </FormGroup>
+            </Form.Group>
           </Col>
           <Col>
             <FormGroup>
               <Button color="primary" onClick={this.handleSubmit} size="sm">
-                Submit
+                Login
               </Button>
             </FormGroup>
           </Col>

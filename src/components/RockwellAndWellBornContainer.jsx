@@ -18,7 +18,8 @@ class RockwellAndWellBornContainer extends Component {
     return (
       <div>
         <NavBar />
-        <Accordion defaultActiveKey="0">
+        {/* Removed default key  */}
+        <Accordion>
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
               Wellbore and perf data{" "}
