@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import NavBar from "../components/NavBar";
 import { Tabs, Tab, Accordion, Button, Card } from "react-bootstrap";
 import RockWellAndWellBorn from "../components/RockWell&WellBorn";
 import RockMechanicalData from "../components/RockMechanicalData";
@@ -16,6 +17,7 @@ class RockwellAndWellBornContainer extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <Accordion defaultActiveKey="0">
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">

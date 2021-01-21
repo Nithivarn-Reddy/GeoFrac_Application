@@ -1,19 +1,19 @@
 import "./App.css";
-import NavBar from "./components/NavBar";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RockwellAndWellBornContainer from "./components/RockwellAndWellBornContainer";
 import PumpingSchedule from "./components/PumpingSchedule";
 import Plots from "./components/Plots";
 import TechnicalData from "./components/TechnicalData";
+import Login from "./components/Login";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Router>
         <Switch>
-          <Route path="/" exact={true} />
+          <Route path="/" exact={true} component={() => <Login />} />
           <Route path="/wellboreRockData" exact={true}>
             <RockwellAndWellBornContainer />
           </Route>
