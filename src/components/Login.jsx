@@ -6,29 +6,51 @@ import { withRouter, Link } from "react-router-dom";
 class Login extends Component {
   state = {
     credentials: {
-      userName: "",
+      username: "",
       password: "",
     },
   };
 
-  handleSubmit = () => {
+  handleSubmit = async (event) => {
+    event.preventDefault();
     const { credentials } = { ...this.state };
-    if (credentials.userName !== "Admin") {
+    if (credentials.username === "") {
       console.log("please enter correct username");
       this.props.history.push("/");
       document.getElementById("message").innerHTML =
         "Please enter correct credentials";
       document.getElementById("message").style.color = "red";
-    } else if (credentials.password !== "1234") {
+    } else if (credentials.password === "") {
       console.log("please enter correct password");
       this.props.history.push("/");
       document.getElementById("message").innerHTML =
         "Please enter correct credentials";
       document.getElementById("message").style.color = "red";
     } else {
-      sessionStorage.setItem("userName", "Admin");
-      sessionStorage.setItem("password", "1234");
-      this.props.history.push("/wellboreRockData");
+      // sessionStorage.setItem("username", "Admin");
+      // sessionStorage.setItem("password", "1234");
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+      if (response.status !== 200) {
+        this.props.history.push("/");
+        document.getElementById("message").innerHTML =
+          "Please enter correct credentials";
+        document.getElementById("message").style.color = "red";
+      } else {
+        const body = await response.json();
+        localStorage.setItem(
+          "jwt-token",
+          JSON.stringify({ jwt: body.access_token })
+        );
+        localStorage.setItem("role", JSON.stringify({ role: body.role }));
+        this.props.history.push("/wellboreRockData");
+      }
     }
   };
 
@@ -47,18 +69,18 @@ class Login extends Component {
       <Container className="base-container">
         <p id="message"></p>
         <h2 style={{ padding: 10 }}>Login</h2>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Col sm="3">
             <Form.Group>
-              <Form.Label for="userName">User Name</Form.Label>
+              <Form.Label for="username">User Name</Form.Label>
 
               <Form.Control
                 type="text"
-                name="userName"
-                id="userName"
-                value={"" || credentials.userName}
+                name="username"
+                id="username"
+                value={"" || credentials.username}
                 onChange={this.handleChange}
-                autoComplete="userName"
+                autoComplete="username"
               />
             </Form.Group>
           </Col>
@@ -77,7 +99,7 @@ class Login extends Component {
           </Col>
           <Col>
             <FormGroup>
-              <Button color="primary" onClick={this.handleSubmit} size="sm">
+              <Button color="primary" type="submit" size="sm">
                 Login
               </Button>
             </FormGroup>

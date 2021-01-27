@@ -8,6 +8,8 @@ import Plots from "./components/Plots";
 import TechnicalData from "./components/TechnicalData";
 import FldInput from "./components/FldInput";
 import Login from "./components/Login";
+import Users from "./components/Users";
+import AddUser from "./components/AddUser";
 
 function App() {
   return (
@@ -32,6 +34,14 @@ function App() {
             <Plots />
           </Route>
           <Route path="/manual" exact />
+          <Route path="/users" exact>
+            {" "}
+            <Users />
+          </Route>
+          <Route path="/addnewuser" exact>
+            {" "}
+            <AddUser />
+          </Route>
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </Router>
