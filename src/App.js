@@ -6,6 +6,7 @@ import RockwellAndWellBornContainer from "./components/RockwellAndWellBornContai
 import PumpingSchedule from "./components/PumpingSchedule";
 import Plots from "./components/Plots";
 import TechnicalData from "./components/TechnicalData";
+import FldInput from "./components/FldInput";
 import Login from "./components/Login";
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
           <Route path="/technicalData" exact>
             <TechnicalData />
           </Route>
-          <Route path="/fldInput" exact />
+          <Route path="/fldInput" exact>
+            <FldInput />
+          </Route>
           <Route path="/execution" exact />
           <Route path="/plots" exact>
             <Plots />

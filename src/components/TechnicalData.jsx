@@ -137,7 +137,7 @@ class TechnicalData extends Component {
     console.log("Technical Data ------ " + data);
 
     const textToBLOB = new Blob([data], { type: "text/plain" });
-    const sFileName = "technicalData.txt"; // The file to save the data.
+    const sFileName = "TECHNICAL_INPUT.txt"; // The file to save the data.
 
     let newLink = document.createElement("a");
     newLink.download = sFileName;
