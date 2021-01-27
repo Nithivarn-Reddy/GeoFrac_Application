@@ -4,6 +4,41 @@ import { NavLink, Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {};
+
+  logout = () => {
+    localStorage.removeItem("jwt-token");
+    localStorage.removeItem("role");
+    this.hideLogout();
+    this.hideUsers();
+  };
+
+  showUsers = () => {
+    document.getElementById("users").style.display = "block";
+  };
+  showLogout = () => {
+    document.getElementById("logout").style.display = "block";
+  };
+
+  hideLogout = () => {
+    document.getElementById("logout").style.display = "none";
+  };
+
+  hideUsers = () => {
+    document.getElementById("users").style.display = "none";
+  };
+
+  componentDidMount() {
+    if (localStorage.getItem("jwt-token") !== null) {
+      if (JSON.parse(localStorage.getItem("role")).role === "admin") {
+        this.showUsers();
+      }
+      this.showLogout();
+    } else {
+      this.hideLogout();
+      this.hideUsers();
+    }
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -48,6 +83,23 @@ class NavBar extends Component {
               </NavLink>
               <NavLink className="nav-link" to="/manual">
                 Manual
+              </NavLink>
+              <NavLink
+                className="nav-link"
+                id="logout"
+                to="/"
+                onClick={this.logout}
+                style={{ display: "none" }}
+              >
+                Logout
+              </NavLink>
+              <NavLink
+                className="nav-link"
+                id="users"
+                to="/users"
+                style={{ display: "none" }}
+              >
+                Users
               </NavLink>
             </div>
           </div>
