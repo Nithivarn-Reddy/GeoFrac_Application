@@ -11,7 +11,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="noOfHorizontolWells">
             <Form.Label>No of horizontal wells</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "Horizontal wells"
+              value = {this.state.fileData["Horizontal wells"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter no of horizontal wells"
             />
           </Form.Group>
@@ -19,7 +22,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="wellInclinations">
             <Form.Label>Well inclinations(in degrees)</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "well inclinations"
+              value = {this.state.fileData["well inclinations"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter Well inclinations(in degrees)"
             />
           </Form.Group>
@@ -41,7 +47,10 @@ class RockWellAndWellBorn extends Component {
               Perforation angle in degree w.r.t wellbore axis
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "perforation angle"
+              value = {this.state.fileData["perforation angle"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter perforation angle in degree w.r.t wellbore axis"
             />
           </Form.Group>
@@ -49,7 +58,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="wellsSpacing">
             <Form.Label>Spacing between the wells</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "spacing between the wells"
+              value = {this.state.fileData["spacing between the wells"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter spacing between the wells"
             />
           </Form.Group>
@@ -57,7 +69,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="stagesPerWell">
             <Form.Label>Number of stages per well</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "stages per well"
+              value = {this.state.fileData["stages per well"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter number of stages per well"
             ></Form.Control>
           </Form.Group>
@@ -67,7 +82,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="clusterPerStage">
             <Form.Label>Number of cluster per stage</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "clusters per stage"
+              value = {this.state.fileData["clusters per stage"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter number of cluster per stage"
             />
           </Form.Group>
@@ -75,7 +93,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="clusterSpacing">
             <Form.Label>Cluster spacing</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "cluster spacing"
+              value = {this.state.fileData["cluster spacing"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter cluster spacing"
             />
           </Form.Group>
@@ -83,7 +104,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="stageSpacing">
             <Form.Label>Stage spacing</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "stage spacing"
+              value = {this.state.fileData["stage spacing"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter stage spacing"
             ></Form.Control>
           </Form.Group>
@@ -94,7 +118,10 @@ class RockWellAndWellBorn extends Component {
               Offset between the fractures of parallel wells (m)
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "offset between the fractures"
+              value = {this.state.fileData["offset between the fractures"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter offset between the fractures of parallel wells (m)"
             />
           </Form.Group>
@@ -102,7 +129,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="offsetType">
             <Form.Label>Offset type</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "offset type"
+              value = {this.state.fileData["offset type"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter offset type"
             />
           </Form.Group>
@@ -112,7 +142,10 @@ class RockWellAndWellBorn extends Component {
               Initial size of fractures from perforation clusters
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "initial size of the fractures"
+              value = {this.state.fileData["initial size of the fractures"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter initial size of fractures from perforation clusters"
             ></Form.Control>
           </Form.Group>
@@ -122,7 +155,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="elementFractures">
             <Form.Label>Initial element size for all fractures</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "element size for all fractures"
+              value = {this.state.fileData["element size for all fractures"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter initial element size for all fractures"
             />
           </Form.Group>
@@ -132,7 +168,10 @@ class RockWellAndWellBorn extends Component {
               Maximum and minimum element size for all fractures (m)
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "maximum and minimum elemenet size"
+              value = {this.state.fileData["maximum and minimum elemenet size"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter Maximum and minimum element size for all fractures (m)"
             />
           </Form.Group>
@@ -140,7 +179,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="initialPerforationDiameter">
             <Form.Label>Initial perforation diameter</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "perforation diamter"
+              value = {this.state.fileData["perforation diamter"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter initial perforation diameter"
             ></Form.Control>
           </Form.Group>
@@ -150,7 +192,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="initialPerforationDischargeCoeff">
             <Form.Label>Intital perforation discharge coeficient</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "perforation discharge"
+              value = {this.state.fileData["perforation discharge"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter intital perforation discharge coeficient"
             />
           </Form.Group>
@@ -158,7 +203,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="noOfPerforationPerCluster">
             <Form.Label>Number of perforation per cluster</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "perforations per cluster"
+              value = {this.state.fileData["perforations per cluster"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter number of perforation per cluster"
             />
           </Form.Group>
@@ -168,7 +216,10 @@ class RockWellAndWellBorn extends Component {
               Errosion rate of perforation diameter in inches/bbl
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "erosion rate of perforation"
+              value = {this.state.fileData["erosion rate of perforation"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter errosion rate of perforation diameter in inches/bbl"
             ></Form.Control>
           </Form.Group>
@@ -180,7 +231,10 @@ class RockWellAndWellBorn extends Component {
               Errosion rate of discharge coefficient in -/bbl
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "erosion rate of discharge"
+              value = {this.state.fileData["erosion rate of discharge"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter Errosion rate of discharge coefficient in -/bbl"
             />
           </Form.Group>
@@ -190,7 +244,10 @@ class RockWellAndWellBorn extends Component {
               Maximum values of perforation diameter coefficient
             </Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "maximum values for perforation"
+              value = {this.state.fileData["maximum values for perforation"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter Maximum values of perforation diameter coefficient"
             />
           </Form.Group>
@@ -198,7 +255,10 @@ class RockWellAndWellBorn extends Component {
           <Form.Group as={Col} controlId="includePerforationFriction">
             <Form.Label>Include perforation friction</Form.Label>
             <Form.Control
-              type="text"
+              type="text" 
+              name = "include perforation friction"
+              value = {this.state.fileData["include perforation friction"]|| ""}
+              onChange = {this.handleChange}
               // placeholder="Enter Include perforation friction"
             ></Form.Control>
           </Form.Group>
