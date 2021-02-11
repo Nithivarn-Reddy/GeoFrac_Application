@@ -69,11 +69,11 @@ class NavBar extends Component {
               <NavLink className="nav-link" to="/pumpingData">
                 Pumping Data
               </NavLink>
-              <NavLink className="nav-link" to="/technicalData">
-                Technical Data
-              </NavLink>
               <NavLink className="nav-link" to="/fldInput">
                 FLD Input
+              </NavLink>
+              <NavLink className="nav-link" to="/technicalData">
+                Technical Data
               </NavLink>
               <NavLink className="nav-link" to="/execution">
                 exe Execution
