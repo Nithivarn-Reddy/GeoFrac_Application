@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import NavBar from "../components/NavBar";
-import { Tabs, Tab, Accordion, Button, Card } from "react-bootstrap";
+import { Tabs, Tab, Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import RockWellAndWellBorn from "../components/RockWell&WellBorn";
 import RockMechanicalData from "../components/RockMechanicalData";
 import StressData from "../components/StressData";
@@ -10,15 +10,52 @@ import ClosureParameters from "../components/ClosureParameters";
 import DisplayAndPrintOptions from "../components/DisplayAndPrintOptions";
 
 class RockwellAndWellBornContainer extends Component {
-  state = {};
+  state = {
+    formData: {
+      fileData: "",
+    },
+  };
 
-  readFileData() {}
+  handleRead = () => {
+    console.log(
+      "The Read button is clicked",
+      document.getElementById("exampleFormControlFile1").files[0]
+    );
+
+    var fr = new FileReader();
+    // reader.onload = function (event) {
+    //   ContentString = event.target.result;
+    // };
+    // reader.onerror = function (event) {
+    //   alert("Load error!");
+    // };
+    const fileName = document.getElementById("exampleFormControlFile1")
+      .files[0];
+    fr.readAsText(fileName);
+    const self = this;
+    fr.onload = function () {
+      let data = fr.result;
+      //document.getElementById("output").textContent = fr.result;
+      let formData = { ...self.state.formData };
+      //console.log("Form data -- " + formData);
+      formData["fileData"] = data
+        .split("\n")
+        .filter(
+          (e) =>
+            e != "*************************************************************"
+        );
+      //console.log("File data -- " + formData["fileData"]);
+      self.setState({ formData: formData });
+      // console.log("FILE DATA", this.state.formData);
+    };
+  };
 
   render() {
     return (
       <div>
         <NavBar />
         {/* Removed default key  */}
+        {console.log(this.state.formData)}
         <Accordion>
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -74,6 +111,17 @@ class RockwellAndWellBornContainer extends Component {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        <Col lg="3" style={{ marginTop: 30 }}>
+          <Form.Group>
+            <Form.File
+              id="exampleFormControlFile1"
+              onChange={this.handleRead}
+            />
+            <Button type="submit" onClick={this.handleRead}>
+              Read from a file
+            </Button>
+          </Form.Group>
+        </Col>
       </div>
       // <Tabs
       //   defaultActiveKey="wellBoreAndPerfData"

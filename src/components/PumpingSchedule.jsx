@@ -10,6 +10,7 @@ class PumpingSchedule extends Component {
     formData: {
       noOfWells: "",
       noOfStages: "",
+      fileData: "",
     },
   };
 
@@ -26,6 +27,42 @@ class PumpingSchedule extends Component {
     console.log("The submit button is clicked");
     this.setState({ showForm: true });
   };
+
+  handleRead = () => {
+    console.log(
+      "The Read button is clicked",
+      document.getElementById("exampleFormControlFile1").files[0]
+    );
+
+    var fr = new FileReader();
+    // reader.onload = function (event) {
+    //   ContentString = event.target.result;
+    // };
+    // reader.onerror = function (event) {
+    //   alert("Load error!");
+    // };
+    const fileName = document.getElementById("exampleFormControlFile1")
+      .files[0];
+    fr.readAsText(fileName);
+    const self = this;
+    fr.onload = function () {
+      let data = fr.result;
+      //document.getElementById("output").textContent = fr.result;
+      let formData = { ...self.state.formData };
+      //console.log("Form data -- " + formData);
+      formData["fileData"] = data
+        .split("\n")
+        .filter(
+          (e) =>
+            e != "*************************************************************"
+        );
+      //console.log("File data -- " + formData["fileData"]);
+      self.setState({ formData: formData });
+    };
+
+    //const fileData = reader.readAsText(fileName /*, "UTF-8"*/);
+  };
+
   render() {
     return (
       <div>
@@ -36,6 +73,7 @@ class PumpingSchedule extends Component {
           {/* style={{ paddingLeft: 200, paddingTop: 30 }} */}
           <div>
             <Row>
+              <pre id="output"></pre>
               <Col lg="3">
                 <Form.Group>
                   <Form.Label>No. of wells</Form.Label>
@@ -73,9 +111,15 @@ class PumpingSchedule extends Component {
                 </Form.Group>
               </Col>
               <Col lg="3" style={{ marginTop: 30 }}>
-                <Button variant="primary" type="submit">
-                  Read from file
-                </Button>
+                <Form.Group>
+                  <Form.File
+                    id="exampleFormControlFile1"
+                    onChange={this.handleRead}
+                  />
+                  <Button type="submit" onClick={this.handleRead}>
+                    Read from a file
+                  </Button>
+                </Form.Group>
               </Col>
             </Row>
 
@@ -85,6 +129,10 @@ class PumpingSchedule extends Component {
               ) : null}
             </div>
           </div>
+          {console.log(
+            "File data from state ",
+            this.state.formData["fileData"]
+          )}
         </Container>
       </div>
     );

@@ -3,7 +3,21 @@ import React, { Component } from "react";
 import { Form, Table, Col } from "react-bootstrap";
 
 class RockWellAndWellBorn extends Component {
-  state = {};
+  state = {
+    fileData: {
+      "Enter number of Horizontal wells": 2,
+    },
+  };
+
+  handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    let fileData = { ...this.state.fileData };
+    fileData[name] = value;
+    this.setState({ fileData: fileData });
+    console.log("State value", this.state.fileData);
+  };
   render() {
     return (
       <Form>
@@ -12,6 +26,11 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>No of horizontal wells</Form.Label>
             <Form.Control
               type="text"
+              name="Enter number of Horizontal wells"
+              value={
+                this.state.fileData["Enter number of Horizontal wells"] || ""
+              }
+              onChange={this.handleChange}
               // placeholder="Enter no of horizontal wells"
             />
           </Form.Group>
