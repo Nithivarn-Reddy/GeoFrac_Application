@@ -3,9 +3,6 @@ import { Tabs, Tab } from "react-bootstrap";
 import StageContent from "./StageContent";
 
 class Stages extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {};
   render() {
     console.log("Value of Props in Stages" + this.props.count);

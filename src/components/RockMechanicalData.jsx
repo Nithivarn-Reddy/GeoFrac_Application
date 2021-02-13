@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Table, Col } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 
 class RockMechanicalData extends Component {
   state = {};
@@ -12,11 +12,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="payzone thickness"
-              value={
-                this.state.fileData["payzone thickness"] || ""
-              }
-              onChange={this.handleChange}
+              name="payZoneThickness"
+              value={this.props.fileData["payZoneThickness"] || ""}
+              onChange={this.props.handleChange}
               // placeholder=""
             />
           </Form.Group>
@@ -26,11 +24,13 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               as="select"
-              defaultValue="Choose..."
+              value={this.props.fileData["stressBarriers"]}
+              name="stressBarriers"
+              onChange={this.props.handleChange}
             >
               <option>Choose...</option>
-              <option>symetric</option>
-              <option>asymetric</option>
+              <option>symmetric</option>
+              <option>asymmetric</option>
               <option>no_barrier</option>
             </Form.Control>
           </Form.Group>
@@ -42,11 +42,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="excess stress in top"
-              value={
-                this.state.fileData["excess stress in top"] || ""
-              }
-              onChange={this.handleChange}
+              name="excessStressTopBottom"
+              value={this.props.fileData["excessStressTopBottom"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter excess stress in top and bottom barriers respectively (Pa)"
             />
           </Form.Group>
@@ -61,11 +59,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="excess height growth"
-              value={
-                this.state.fileData["excess height growth"] || ""
-              }
-              onChange={this.handleChange}
+              name="maxHeightGrowth"
+              value={this.props.fileData["maxHeightGrowth"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter maximum value of excess height growth allowed into top and bottom barrier respectively (m)"
             />
           </Form.Group>
@@ -77,11 +73,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="Fluid Leak-off model"
-              value={
-                this.state.fileData["Fluid Leak-off model"] || ""
-              }
-              onChange={this.handleChange}
+              name="fluidLeakModel"
+              value={this.props.fileData["fluidLeakModel"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter fluid leak-off model"
             ></Form.Control>
           </Form.Group>
@@ -91,11 +85,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="YOUNG'S MODULUS"
-              value={
-                this.state.fileData["YOUNG'S MODULUS"] || ""
-              }
-              onChange={this.handleChange}
+              name="youngModulus"
+              value={this.props.fileData["youngModulus"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter young's modulus"
             />
           </Form.Group>
@@ -107,11 +99,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="POISSON'S RATIO"
-              value={
-                this.state.fileData["POISSON'S RATIO"] || ""
-              }
-              onChange={this.handleChange}
+              name="poissonRatio"
+              value={this.props.fileData["poissonRatio"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter poisson's ratio"
             />
           </Form.Group>
@@ -121,11 +111,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="TOUGHNESS OF THE ROCK"
-              value={
-                this.state.fileData["TOUGHNESS OF THE ROCK"] || ""
-              }
-              onChange={this.handleChange}
+              name="fractureToughness"
+              value={this.props.fileData["fractureToughness"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter fracture toughness of the rock"
             ></Form.Control>
           </Form.Group>
@@ -136,10 +124,8 @@ class RockMechanicalData extends Component {
               className="smaller-input"
               type="text"
               name="porosity"
-              value={
-                this.state.fileData["porosity"] || ""
-              }
-              onChange={this.handleChange}
+              value={this.props.fileData["porosity"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter porosity"
             />
           </Form.Group>
@@ -152,10 +138,8 @@ class RockMechanicalData extends Component {
               className="smaller-input"
               type="text"
               name="permeability"
-              value={
-                this.state.fileData["permeability"] || ""
-              }
-              onChange={this.handleChange}
+              value={this.props.fileData["permeability"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter permeability"
             />
           </Form.Group>
@@ -165,11 +149,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="initial pore pressure"
-              value={
-                this.state.fileData["initial pore pressure"] || ""
-              }
-              onChange={this.handleChange}
+              name="initialPorePressure"
+              value={this.props.fileData["initialPorePressure"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter intitial pore pressure"
             ></Form.Control>
           </Form.Group>
@@ -182,11 +164,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="toughness in vertical direction"
-              value={
-                this.state.fileData["toughness in vertical direction"] || ""
-              }
-              onChange={this.handleChange}
+              name="fractureToughnessTop"
+              value={this.props.fileData["fractureToughnessTop"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter fracture toughness in vertical direction for top bounding layers"
             />
           </Form.Group>
@@ -201,11 +181,9 @@ class RockMechanicalData extends Component {
             <Form.Control
               className="smaller-input"
               type="text"
-              name="toughness in vertical direction"
-              value={
-                this.state.fileData["toughness in vertical direction"] || ""
-              }
-              onChange={this.handleChange}
+              name="fractureToughnessBottom"
+              value={this.props.fileData["fractureToughnessBottom"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter fracture toughness in vertical direction for bottom bounding layers"
             />
           </Form.Group>

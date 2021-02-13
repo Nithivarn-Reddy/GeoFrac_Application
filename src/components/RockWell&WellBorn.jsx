@@ -1,23 +1,10 @@
 import React, { Component } from "react";
 
-import { Form, Table, Col } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 
 class RockWellAndWellBorn extends Component {
-  state = {
-    fileData: {
-      "Enter number of Horizontal wells": 2,
-    },
-  };
+  state = {};
 
-  handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    let fileData = { ...this.state.fileData };
-    fileData[name] = value;
-    this.setState({ fileData: fileData });
-    console.log("State value", this.state.fileData);
-  };
   render() {
     return (
       <Form>
@@ -26,9 +13,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>No of horizontal wells</Form.Label>
             <Form.Control
               type="text"
-              name="Horizontal wells"
-              value={this.state.fileData["Horizontal wells"] || ""}
-              onChange={this.handleChange}
+              name="noOfHorizontolWells"
+              value={this.props.fileData["noOfHorizontolWells"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter no of horizontal wells"
             />
           </Form.Group>
@@ -37,16 +24,21 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Well inclinations(in degrees)</Form.Label>
             <Form.Control
               type="text"
-              name="well inclinations"
-              value={this.state.fileData["well inclinations"] || ""}
-              onChange={this.handleChange}
+              name="wellInclinations"
+              value={this.props.fileData["wellInclinations"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter Well inclinations(in degrees)"
             />
           </Form.Group>
 
           <Form.Group as={Col} controlId="perforationOrientation">
             <Form.Label>Perforation orientation</Form.Label>
-            <Form.Control as="select" defaultValue="Choose...">
+            <Form.Control
+              as="select"
+              value={this.props.fileData["perforationOrientation"]}
+              name="perforationOrientation"
+              onChange={this.props.handleChange}
+            >
               <option>Choose...</option>
               <option>1</option>
               <option>2</option>
@@ -62,9 +54,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="perforation angle"
-              value={this.state.fileData["perforation angle"] || ""}
-              onChange={this.handleChange}
+              name="perforationAngle"
+              value={this.props.fileData["perforationAngle"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter perforation angle in degree w.r.t wellbore axis"
             />
           </Form.Group>
@@ -73,9 +65,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Spacing between the wells</Form.Label>
             <Form.Control
               type="text"
-              name="spacing between the wells"
-              value={this.state.fileData["spacing between the wells"] || ""}
-              onChange={this.handleChange}
+              name="wellsSpacing"
+              value={this.props.fileData["wellsSpacing"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter spacing between the wells"
             />
           </Form.Group>
@@ -84,9 +76,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Number of stages per well</Form.Label>
             <Form.Control
               type="text"
-              name="stages per well"
-              value={this.state.fileData["stages per well"] || ""}
-              onChange={this.handleChange}
+              name="stagesPerWell"
+              value={this.props.fileData["stagesPerWell"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter number of stages per well"
             ></Form.Control>
           </Form.Group>
@@ -97,9 +89,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Number of cluster per stage</Form.Label>
             <Form.Control
               type="text"
-              name="clusters per stage"
-              value={this.state.fileData["clusters per stage"] || ""}
-              onChange={this.handleChange}
+              name="clusterPerStage"
+              value={this.props.fileData["clusterPerStage"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter number of cluster per stage"
             />
           </Form.Group>
@@ -108,9 +100,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Cluster spacing</Form.Label>
             <Form.Control
               type="text"
-              name="cluster spacing"
-              value={this.state.fileData["cluster spacing"] || ""}
-              onChange={this.handleChange}
+              name="clusterSpacing"
+              value={this.props.fileData["clusterSpacing"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter cluster spacing"
             />
           </Form.Group>
@@ -119,9 +111,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Stage spacing</Form.Label>
             <Form.Control
               type="text"
-              name="stage spacing"
-              value={this.state.fileData["stage spacing"] || ""}
-              onChange={this.handleChange}
+              name="stageSpacing"
+              value={this.props.fileData["stageSpacing"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter stage spacing"
             ></Form.Control>
           </Form.Group>
@@ -133,9 +125,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="offset between the fractures"
-              value={this.state.fileData["offset between the fractures"] || ""}
-              onChange={this.handleChange}
+              name="offsetBetweenParallelWells"
+              value={this.props.fileData["offsetBetweenParallelWells"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter offset between the fractures of parallel wells (m)"
             />
           </Form.Group>
@@ -144,9 +136,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Offset type</Form.Label>
             <Form.Control
               type="text"
-              name="offset type"
-              value={this.state.fileData["offset type"] || ""}
-              onChange={this.handleChange}
+              name="offsetType"
+              value={this.props.fileData["offsetType"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter offset type"
             />
           </Form.Group>
@@ -157,9 +149,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="initial size of the fractures"
-              value={this.state.fileData["initial size of the fractures"] || ""}
-              onChange={this.handleChange}
+              name="sizeOfFracturesPC"
+              value={this.props.fileData["sizeOfFracturesPC"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter initial size of fractures from perforation clusters"
             ></Form.Control>
           </Form.Group>
@@ -170,11 +162,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Initial element size for all fractures</Form.Label>
             <Form.Control
               type="text"
-              name="element size for all fractures"
-              value={
-                this.state.fileData["element size for all fractures"] || ""
-              }
-              onChange={this.handleChange}
+              name="elementFractures"
+              value={this.props.fileData["elementFractures"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter initial element size for all fractures"
             />
           </Form.Group>
@@ -185,11 +175,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="maximum and minimum elemenet size"
-              value={
-                this.state.fileData["maximum and minimum elemenet size"] || ""
-              }
-              onChange={this.handleChange}
+              name="maxMinSizeOfFractures"
+              value={this.props.fileData["maxMinSizeOfFractures"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter Maximum and minimum element size for all fractures (m)"
             />
           </Form.Group>
@@ -198,9 +186,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Initial perforation diameter</Form.Label>
             <Form.Control
               type="text"
-              name="perforation diamter"
-              value={this.state.fileData["perforation diamter"] || ""}
-              onChange={this.handleChange}
+              name="initialPerforationDiameter"
+              value={this.props.fileData["initialPerforationDiameter"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter initial perforation diameter"
             ></Form.Control>
           </Form.Group>
@@ -211,9 +199,11 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Intital perforation discharge coeficient</Form.Label>
             <Form.Control
               type="text"
-              name="perforation discharge"
-              value={this.state.fileData["perforation discharge"] || ""}
-              onChange={this.handleChange}
+              name="initialPerforationDischargeCoeff"
+              value={
+                this.props.fileData["initialPerforationDischargeCoeff"] || ""
+              }
+              onChange={this.props.handleChange}
               // placeholder="Enter intital perforation discharge coeficient"
             />
           </Form.Group>
@@ -222,9 +212,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Number of perforation per cluster</Form.Label>
             <Form.Control
               type="text"
-              name="perforations per cluster"
-              value={this.state.fileData["perforations per cluster"] || ""}
-              onChange={this.handleChange}
+              name="noOfPerforationPerCluster"
+              value={this.props.fileData["noOfPerforationPerCluster"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter number of perforation per cluster"
             />
           </Form.Group>
@@ -235,9 +225,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="erosion rate of perforation"
-              value={this.state.fileData["erosion rate of perforation"] || ""}
-              onChange={this.handleChange}
+              name="errosionRateDiameterInches"
+              value={this.props.fileData["errosionRateDiameterInches"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter errosion rate of perforation diameter in inches/bbl"
             ></Form.Control>
           </Form.Group>
@@ -250,9 +240,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="erosion rate of discharge"
-              value={this.state.fileData["erosion rate of discharge"] || ""}
-              onChange={this.handleChange}
+              name="errosionRateDischargeCoeff"
+              value={this.props.fileData["errosionRateDischargeCoeff"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter Errosion rate of discharge coefficient in -/bbl"
             />
           </Form.Group>
@@ -263,11 +253,9 @@ class RockWellAndWellBorn extends Component {
             </Form.Label>
             <Form.Control
               type="text"
-              name="maximum values for perforation"
-              value={
-                this.state.fileData["maximum values for perforation"] || ""
-              }
-              onChange={this.handleChange}
+              name="maxPerforationDiameterCoeff"
+              value={this.props.fileData["maxPerforationDiameterCoeff"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter Maximum values of perforation diameter coefficient"
             />
           </Form.Group>
@@ -276,9 +264,9 @@ class RockWellAndWellBorn extends Component {
             <Form.Label>Include perforation friction</Form.Label>
             <Form.Control
               type="text"
-              name="include perforation friction"
-              value={this.state.fileData["include perforation friction"] || ""}
-              onChange={this.handleChange}
+              name="includePerforationFriction"
+              value={this.props.fileData["includePerforationFriction"] || ""}
+              onChange={this.props.handleChange}
               // placeholder="Enter Include perforation friction"
             ></Form.Control>
           </Form.Group>

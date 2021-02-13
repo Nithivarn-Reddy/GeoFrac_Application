@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Table, Col, Button } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 
 class FldInput extends Component {

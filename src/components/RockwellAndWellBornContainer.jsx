@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import NavBar from "../components/NavBar";
-import { Tabs, Tab, Accordion, Button, Card, Col, Form } from "react-bootstrap";
+import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
 import RockWellAndWellBorn from "../components/RockWell&WellBorn";
 import RockMechanicalData from "../components/RockMechanicalData";
 import StressData from "../components/StressData";
@@ -12,8 +12,65 @@ import DisplayAndPrintOptions from "../components/DisplayAndPrintOptions";
 class RockwellAndWellBornContainer extends Component {
   state = {
     formData: {
-      fileData: "",
+      fileData: {
+        noOfHorizontolWells: "",
+        wellInclinations: "",
+        perforationOrientation: "",
+        perforationAngle: "",
+        wellsSpacing: "",
+        stagesPerWell: "",
+        clusterPerStage: "",
+        clusterSpacing: "",
+        stageSpacing: "",
+        offsetBetweenParallelWells: "",
+        offsetType: "",
+        sizeOfFracturesPC: "",
+        elementFractures: "",
+        maxMinSizeOfFractures: "",
+        initialPerforationDiameter: "",
+        initialPerforationDischargeCoeff: "",
+        noOfPerforationPerCluster: "",
+        payZoneThickness: "",
+        stressBarriers: "",
+        excessStressTopBottom: "",
+        maxHeightGrowth: "",
+        errosionRateDiameterInches: "",
+        errosionRateDischargeCoeff: "",
+        maxPerforationDiameterCoeff: "",
+        includePerforationFriction: "",
+        fluidLeakModel: "",
+        youngModulus: "",
+        poissonRatio: "",
+        fractureToughness: "",
+        porosity: "",
+        permeability: "",
+        initialPorePressure: "",
+        fractureToughnessTop: "",
+        fractureToughnessBottom: "",
+        errorConstInStressSxxFunc: "",
+        errorConstInStressSyyFunc: "",
+        errorConstInStressSxyFunc: "",
+        nonPlanar: "",
+        shearInteraction: "",
+        timeSkip: "",
+        displayContours: "",
+        fixedContactAperture: "",
+        constantContactAperture: "",
+        percentageFractureWidths: "",
+        enterSigmaRef: "",
+        percentageStageFractures: "",
+      },
     },
+  };
+
+  handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    let formData = { ...this.state.formData };
+    formData["fileData"][name] = value;
+    this.setState({ formData: formData });
+    //console.log("State value", this.state.fileData);
   };
 
   handleRead = () => {
@@ -38,19 +95,118 @@ class RockwellAndWellBornContainer extends Component {
       //document.getElementById("output").textContent = fr.result;
       let formData = { ...self.state.formData };
       //console.log("Form data -- " + formData);
-      formData["fileData"] = data
+      // formData["fileData"] = data
+      //   .split("\n")
+      //   .filter(
+      //     (e) =>
+      //       e != "*************************************************************"
+      //   );
+      data = data
         .split("\n")
         .filter(
           (e) =>
-            e != "*************************************************************"
+            e !==
+            "*************************************************************"
         );
+      formData["fileData"]["noOfHorizontolWells"] = data[1];
+      formData["fileData"]["wellInclinations"] = data[3];
+      formData["fileData"]["perforationOrientation"] = data[6];
+
+      formData["fileData"]["perforationAngle"] = data[8];
+
+      formData["fileData"]["wellsSpacing"] = data[10];
+
+      formData["fileData"]["stagesPerWell"] = data[12];
+
+      formData["fileData"]["clusterPerStage"] = data[14];
+
+      formData["fileData"]["clusterSpacing"] = data[16];
+
+      formData["fileData"]["stageSpacing"] = data[18];
+
+      formData["fileData"]["offsetBetweenParallelWells"] = data[20];
+
+      formData["fileData"]["offsetType"] = data[22];
+
+      formData["fileData"]["sizeOfFracturesPC"] = data[24];
+
+      formData["fileData"]["elementFractures"] = data[26];
+
+      formData["fileData"]["maxMinSizeOfFractures"] = data[28];
+
+      formData["fileData"]["initialPerforationDiameter"] = data[30];
+
+      formData["fileData"]["initialPerforationDischargeCoeff"] = data[32];
+
+      formData["fileData"]["noOfPerforationPerCluster"] = data[34];
+
+      formData["fileData"]["payZoneThickness"] = data[36];
+
+      formData["fileData"]["stressBarriers"] = data[38];
+
+      formData["fileData"]["excessStressTopBottom"] = data[40];
+
+      formData["fileData"]["maxHeightGrowth"] = data[42];
+
+      formData["fileData"]["errosionRateDiameterInches"] = data[44];
+
+      formData["fileData"]["errosionRateDischargeCoeff"] = data[46];
+
+      formData["fileData"]["maxPerforationDiameterCoeff"] = data[48];
+
+      formData["fileData"]["includePerforationFriction"] = data[50];
+
+      formData["fileData"]["fluidLeakModel"] = data[52];
+
+      formData["fileData"]["youngModulus"] = data[54].split(",")[0];
+      formData["fileData"]["poissonRatio"] = data[54].split(",")[1];
+
+      // Fracture toughness , porosity,permeability,initial pore pressure
+
+      formData["fileData"]["fractureToughness"] = data[56].split(",")[0];
+
+      formData["fileData"]["porosity"] = data[56].split(",")[1];
+
+      formData["fileData"]["permeability"] = data[56].split(",")[2];
+
+      formData["fileData"]["initialPorePressure"] = data[56].split(",")[3];
+
+      // fractureToughnessTop , fractureToughnessBottom
+
+      formData["fileData"]["fractureToughnessTop"] = data[58].split(",")[0];
+
+      formData["fileData"]["fractureToughnessBottom"] = data[58].split(",")[1];
+
+      formData["fileData"]["errorConstInStressSxxFunc"] = data[61];
+
+      formData["fileData"]["errorConstInStressSyyFunc"] = data[63];
+
+      formData["fileData"]["errorConstInStressSxyFunc"] = data[65];
+
+      formData["fileData"]["nonPlanar"] = data[67];
+
+      formData["fileData"]["shearInteraction"] = data[69];
+
+      formData["fileData"]["timeSkip"] = data[71];
+
+      formData["fileData"]["displayContours"] = data[73];
+
+      formData["fileData"]["fixedContactAperture"] = data[75];
+
+      formData["fileData"]["constantContactAperture"] = data[77];
+
+      formData["fileData"]["percentageFractureWidths"] = data[79];
+
+      formData["fileData"]["enterSigmaRef"] = data[81];
+
+      formData["fileData"]["percentageStageFractures"] = data[83];
+
       //console.log("File data -- " + formData["fileData"]);
       self.setState({ formData: formData });
       // console.log("FILE DATA", this.state.formData);
     };
   };
 
-  readFileData() {}
   handleSubmit = () => {
     const maxNumIteration_val = document.getElementById("noOfHorizontolWells")
       .value;
@@ -352,7 +508,10 @@ class RockwellAndWellBornContainer extends Component {
               <i class="fas fa-angle-down rotate-icon"></i>
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="0">
-              <RockWellAndWellBorn />
+              <RockWellAndWellBorn
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -360,7 +519,10 @@ class RockwellAndWellBornContainer extends Component {
               Rock mechanical data
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="1">
-              <RockMechanicalData />
+              <RockMechanicalData
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -368,7 +530,10 @@ class RockwellAndWellBornContainer extends Component {
               Stress data
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="2">
-              <StressData />
+              <StressData
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -376,7 +541,10 @@ class RockwellAndWellBornContainer extends Component {
               Propogation data
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="3">
-              <PropogationData />
+              <PropogationData
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -384,7 +552,10 @@ class RockwellAndWellBornContainer extends Component {
               Closure parameters
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="4">
-              <ClosureParameters />
+              <ClosureParameters
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -392,7 +563,10 @@ class RockwellAndWellBornContainer extends Component {
               Display and printing Option
             </Accordion.Toggle>
             <Accordion.Collapse className="small-input" eventKey="5">
-              <DisplayAndPrintOptions />
+              <DisplayAndPrintOptions
+                fileData={this.state.formData.fileData}
+                handleChange={this.handleChange}
+              />
             </Accordion.Collapse>
           </Card>
         </Accordion>
@@ -406,9 +580,9 @@ class RockwellAndWellBornContainer extends Component {
               id="exampleFormControlFile1"
               onChange={this.handleRead}
             />
-            <Button type="submit" onClick={this.handleRead}>
+            {/* <Button type="submit" onClick={this.handleRead}>
               Read from a file
-            </Button>
+            </Button> */}
           </Form.Group>
         </Col>
       </div>

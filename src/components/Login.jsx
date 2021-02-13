@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import { Container, Form, Col, FormGroup, Button, Row } from "react-bootstrap";
-import { withRouter, Link } from "react-router-dom";
+import { Container, Form, Col, FormGroup, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   state = {

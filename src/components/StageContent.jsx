@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Form,
-  FormLabel,
-  Button,
-  Table,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container, Form, Button, Table, Row, Col } from "react-bootstrap";
 
 class StageContent extends Component {
   state = {

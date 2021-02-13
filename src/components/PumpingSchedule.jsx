@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Form, Table, Button, Container, Col, Row } from "react-bootstrap";
+import { Form, Button, Container, Col, Row } from "react-bootstrap";
 import Wells from "../components/Wells";
 import NavBar from "../components/NavBar";
 
@@ -54,7 +54,8 @@ class PumpingSchedule extends Component {
         .split("\n")
         .filter(
           (e) =>
-            e != "*************************************************************"
+            e !==
+            "*************************************************************"
         );
       //console.log("File data -- " + formData["fileData"]);
       self.setState({ formData: formData });

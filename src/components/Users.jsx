@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "../components/NavBar";
-import { Button, Table, Link, Container } from "react-bootstrap";
+import { Button, Table, Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 class Users extends Component {

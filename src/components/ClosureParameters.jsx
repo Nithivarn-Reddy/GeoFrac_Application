@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Table, Col } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 
 class ClosureParameters extends Component {
   state = {};
@@ -11,30 +11,30 @@ class ClosureParameters extends Component {
             <Form.Label>
               For fixed contact aperture during shut-in enter 1,else enter 2
             </Form.Label>
-            <Form.Control type="text" 
-            className="smaller-input"
+            <Form.Control
               type="text"
-              name="fixed contact aperture"
-              value={
-                this.state.fileData["fixed contact aperture"] || ""
-              }
-              onChange={this.handleChange}
-            placeholder="" />
+              className="smaller-input"
+              type="text"
+              name="fixedContactAperture"
+              value={this.props.fileData["fixedContactAperture"] || ""}
+              onChange={this.props.handleChange}
+              placeholder=""
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="constantContactAperture">
             <Form.Label>
               Enter value of constant contact aperture for all fractures (m)
             </Form.Label>
-            <Form.Control type="text" 
-            className="smaller-input"
+            <Form.Control
               type="text"
-              name="constant contact aperture"
-              value={
-                this.state.fileData["constant contact aperture"] || ""
-              }
-              onChange={this.handleChange}
-            placeholder="" />
+              className="smaller-input"
+              type="text"
+              name="constantContactAperture"
+              value={this.props.fileData["constantContactAperture"] || ""}
+              onChange={this.props.handleChange}
+              placeholder=""
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="percentageFractureWidths">
@@ -42,30 +42,30 @@ class ClosureParameters extends Component {
               For variable contact aperture enter % of fracture widths right
               before injection
             </Form.Label>
-            <Form.Control type="text" 
-            className="smaller-input"
+            <Form.Control
               type="text"
-              name="% of fracture widths"
-              value={
-                this.state.fileData["% of fracture widths"] || ""
-              }
-              onChange={this.handleChange}
-            placeholder="" />
+              className="smaller-input"
+              type="text"
+              name="percentageFractureWidths"
+              value={this.props.fileData["percentageFractureWidths"] || ""}
+              onChange={this.props.handleChange}
+              placeholder=""
+            />
           </Form.Group>
         </Form.Row>
 
         <Form.Row>
           <Form.Group as={Col} controlId="enterSigmaRef">
             <Form.Label>Enter sigma_ref</Form.Label>
-            <Form.Control type="text" 
-            className="smaller-input"
+            <Form.Control
               type="text"
-              name="sigma_ref"
-              value={
-                this.state.fileData["sigma_ref"] || ""
-              }
-              onChange={this.handleChange}
-            placeholder="" />
+              className="smaller-input"
+              type="text"
+              name="enterSigmaRef"
+              value={this.props.fileData["enterSigmaRef"] || ""}
+              onChange={this.props.handleChange}
+              placeholder=""
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="percentageStageFractures">
@@ -73,15 +73,15 @@ class ClosureParameters extends Component {
               Percentage of retained widths for previous stage fractures for
               stage to stage stress shadow calculation
             </Form.Label>
-            <Form.Control type="text" 
-            className="smaller-input"
+            <Form.Control
               type="text"
-              name="percentage of retained widths"
-              value={
-                this.state.fileData["percentage of retained widths"] || ""
-              }
-              onChange={this.handleChange}
-            placeholder="" />
+              className="smaller-input"
+              type="text"
+              name="percentageStageFractures"
+              value={this.props.fileData["percentageStageFractures"] || ""}
+              onChange={this.props.handleChange}
+              placeholder=""
+            />
           </Form.Group>
         </Form.Row>
       </Form>

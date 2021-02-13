@@ -4,10 +4,6 @@ import TabContainer from "react-bootstrap/TabContainer";
 import Stages from "../components/Stages";
 
 class Wells extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {};
 
   handleSubmit = () => {
