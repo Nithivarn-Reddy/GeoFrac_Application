@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
 import NavBar from "../components/NavBar";
-import { Accordion, Button, Card, Col, Form } from "react-bootstrap";
+import { Accordion, Button, Card, Col, Form, Alert } from "react-bootstrap";
 import RockWellAndWellBorn from "../components/RockWell&WellBorn";
 import RockMechanicalData from "../components/RockMechanicalData";
 import StressData from "../components/StressData";
 import PropogationData from "../components/PropogationData";
 import ClosureParameters from "../components/ClosureParameters";
 import DisplayAndPrintOptions from "../components/DisplayAndPrintOptions";
+import FileUploader from "../customComponents/FileUploader";
 
 class RockwellAndWellBornContainer extends Component {
   state = {
@@ -61,6 +62,7 @@ class RockwellAndWellBornContainer extends Component {
         percentageStageFractures: "",
       },
     },
+    files: [],
   };
 
   handleChange = (event) => {
@@ -73,11 +75,7 @@ class RockwellAndWellBornContainer extends Component {
     //console.log("State value", this.state.fileData);
   };
 
-  handleRead = () => {
-    console.log(
-      "The Read button is clicked",
-      document.getElementById("exampleFormControlFile1").files[0]
-    );
+  handleRead = (fileUpload) => {
 
     var fr = new FileReader();
     // reader.onload = function (event) {
@@ -86,8 +84,8 @@ class RockwellAndWellBornContainer extends Component {
     // reader.onerror = function (event) {
     //   alert("Load error!");
     // };
-    const fileName = document.getElementById("exampleFormControlFile1")
-      .files[0];
+    console.log("file", fileUpload);
+    const fileName = fileUpload;
     fr.readAsText(fileName);
     const self = this;
     fr.onload = function () {
@@ -208,278 +206,177 @@ class RockwellAndWellBornContainer extends Component {
   };
 
   handleSubmit = () => {
-    const maxNumIteration_val = document.getElementById("noOfHorizontolWells")
-      .value;
-    const wellInclinations_val = document.getElementById("wellInclinations")
-      .value;
-    const perforationOrientation_val = document.getElementById(
-      "perforationOrientation"
-    ).value;
-    const perforationAngle_val = document.getElementById("perforationAngle")
-      .value;
-    const wellsSpacing_val = document.getElementById("wellsSpacing").value;
-    const stagesPerWell_val = document.getElementById("stagesPerWell").value;
-    const clusterPerStage_val = document.getElementById("clusterPerStage")
-      .value;
-    const clusterSpacing_val = document.getElementById("clusterSpacing").value;
-    const stageSpacing_val = document.getElementById("stageSpacing").value;
-    const offsetBetweenParallelWells_val = document.getElementById(
-      "offsetBetweenParallelWells"
-    ).value;
-    const offsetType_val = document.getElementById("offsetType").value;
-    const sizeOfFracturesPC_val = document.getElementById("sizeOfFracturesPC")
-      .value;
-    const elementFractures_val = document.getElementById("elementFractures")
-      .value;
-    const maxMinSizeOfFractures_val = document.getElementById(
-      "maxMinSizeOfFractures"
-    ).value;
-    const initialPerforationDiameter_val = document.getElementById(
-      "initialPerforationDiameter"
-    ).value;
-    const initialPerforationDischargeCoeff_val = document.getElementById(
-      "initialPerforationDischargeCoeff"
-    ).value;
-    const noOfPerforationPerCluster_val = document.getElementById(
-      "noOfPerforationPerCluster"
-    ).value;
-    const errosionRateDiameterInches_val = document.getElementById(
-      "errosionRateDiameterInches"
-    ).value;
-    const errosionRateDischargeCoeff_val = document.getElementById(
-      "errosionRateDischargeCoeff"
-    ).value;
-    const maxPerforationDiameterCoeff_val = document.getElementById(
-      "maxPerforationDiameterCoeff"
-    ).value;
-    const includePerforationFriction_val = document.getElementById(
-      "includePerforationFriction"
-    ).value;
 
-    const payZoneThickness_val = document.getElementById("payZoneThickness")
-      .value;
-    const stressBarriers_val = document.getElementById("stressBarriers").value;
-    const excessStressTopBottom_val = document.getElementById(
-      "excessStressTopBottom"
-    ).value;
-    const maxHeightGrowth_val = document.getElementById("maxHeightGrowth")
-      .value;
-    const fluidLeakModel_val = document.getElementById("fluidLeakModel").value;
-    const youngModulus_val = document.getElementById("youngModulus").value;
-    const poissonRatio_val = document.getElementById("poissonRatio").value;
-    const fractureToughness_val = document.getElementById("fractureToughness")
-      .value;
-    const porosity_val = document.getElementById("porosity").value;
-    const permeability_val = document.getElementById("permeability").value;
-    const initialPorePressure_val = document.getElementById(
-      "initialPorePressure"
-    ).value;
-    const fractureToughnessTop_val = document.getElementById(
-      "fractureToughnessTop"
-    ).value;
-    const fractureToughnessBottom_val = document.getElementById(
-      "fractureToughnessBottom"
-    ).value;
-
-    const errorConstInStressSxxFunc_val = document.getElementById(
-      "errorConstInStressSxxFunc"
-    ).value;
-    const errorConstInStressSyyFunc_val = document.getElementById(
-      "errorConstInStressSyyFunc"
-    ).value;
-    const errorConstInStressSxyFunc_val = document.getElementById(
-      "errorConstInStressSxyFunc"
-    ).value;
-
-    const nonPlanar_val = document.getElementById("nonPlanar").value;
-    const shearInteraction_val = document.getElementById("shearInteraction")
-      .value;
-
-    const fixedContactAperture_val = document.getElementById(
-      "fixedContactAperture"
-    ).value;
-    const constantContactAperture_val = document.getElementById(
-      "constantContactAperture"
-    ).value;
-    const percentageFractureWidths_val = document.getElementById(
-      "percentageFractureWidths"
-    ).value;
-    const enterSigmaRef_val = document.getElementById("enterSigmaRef").value;
-    const percentageStageFractures_val = document.getElementById(
-      "percentageStageFractures"
-    ).value;
-
-    const timeSkip_val = document.getElementById("timeSkip").value;
-    const displayContours_val = document.getElementById("displayContours")
-      .value;
+    // console.log("horizontal well", this.state.formData.fileData.enterSigmaRef);
 
     let data =
-      "Enter number of Horizontal wells \n" + maxNumIteration_val + "\n";
+      "Enter number of Horizontal wells \n" + this.state.formData.fileData.noOfHorizontolWells + "\n";
 
     data +=
       "Enter well inclinations (in degrees) w.r.t X-axis in the order of each well sperated by comma. X-axis is always minimum stress direction \n" +
-      wellInclinations_val +
+      this.state.formData.fileData.wellInclinations +
       "\n";
 
     data +=
       "Select an option for perforation orientation: Enter '1' for perforations perpendicular to well, \n" +
       "Enter '2' for perforations parallel to maximum stress or Enter '3' for specifying any perforation angle w.r.t X-axis." +
-      perforationOrientation_val +
+      this.state.formData.fileData.perforationOrientation +
       "\n";
 
     data +=
       "If entered '3' above, please specify perforation angle in degrees w.r.t wellbore axis (if you enter 90 degrees perfs are perpendicular to wellbore) \n" +
-      perforationAngle_val +
+      this.state.formData.fileData.perforationAngle +
       "\n";
 
-    data += "Enter spacing between the wells (m) \n" + wellsSpacing_val + "\n";
-    data += "Enter number of stages per well \n" + stagesPerWell_val + "\n";
+    data += "Enter spacing between the wells (m) \n" + this.state.formData.fileData.wellsSpacing + "\n";
+    data += "Enter number of stages per well \n" + this.state.formData.fileData.stagesPerWell + "\n";
     data +=
-      "Enter number of clusters per stage \n" + clusterPerStage_val + "\n";
-    data += "Enter cluster spacing (m) \n" + clusterSpacing_val + "\n";
-    data += "Enter stage spacing (m) \n" + stageSpacing_val + "\n";
+      "Enter number of clusters per stage \n" + this.state.formData.fileData.clusterPerStage + "\n";
+    data += "Enter cluster spacing (m) \n" + this.state.formData.fileData.clusterSpacing + "\n";
+    data += "Enter stage spacing (m) \n" + this.state.formData.fileData.stageSpacing + "\n";
     data +=
       "Enter offset between the fractures of parallel wells (m) \n" +
-      offsetBetweenParallelWells_val +
+      this.state.formData.fileData.offsetBetweenParallelWells +
       "\n";
     data +=
-      "Enter offset type (2- Echelon, 1- Array) \n" + offsetType_val + "\n";
+      "Enter offset type (2- Echelon, 1- Array) \n" + this.state.formData.fileData.offsetType + "\n";
     data +=
       "Enter initial size of the fractures from perforation clusters (m) \n" +
-      sizeOfFracturesPC_val +
+      this.state.formData.fileData.sizeOfFracturesPC +
       "\n";
     data +=
       "Enter initial element size for all fractures (m) \n" +
-      elementFractures_val +
+      this.state.formData.fileData.elementFractures +
       "\n";
     data +=
       "Enter the maximum and minimum elemenet size for all fracturfes (m) \n" +
-      maxMinSizeOfFractures_val +
+      this.state.formData.fileData.maxMinSizeOfFractures +
       "\n";
     data +=
       "Enter inital perforation diamter (inch) \n" +
-      initialPerforationDiameter_val +
+      this.state.formData.fileData.initialPerforationDiameter +
       "\n";
     data +=
       "Enter initial perforation discharge coefficient \n" +
-      initialPerforationDischargeCoeff_val +
+      this.state.formData.fileData.initialPerforationDischargeCoeff +
       "\n";
     data +=
       "Enter number of perforations per cluster \n" +
-      noOfPerforationPerCluster_val +
+      this.state.formData.fileData.noOfPerforationPerCluster +
       "\n";
     data +=
       "Enter erosion rate of perforation diamater in inches/bbl (put zero if no erosion) \n" +
-      errosionRateDiameterInches_val +
+      this.state.formData.fileData.errosionRateDiameterInches +
       "\n";
     data +=
       "Enter erosion rate of discharge coefficient in -/bbl (put zero if no erosion) \n" +
-      errosionRateDischargeCoeff_val +
+      this.state.formData.fileData.errosionRateDischargeCoeff +
       "\n";
     data +=
       "Enter maximum values for perforation diamater (inch) and discharge coefficient (irrespective of erosion rate, these values are not exceeded) \n" +
-      maxPerforationDiameterCoeff_val +
+      this.state.formData.fileData.maxPerforationDiameterCoeff +
       "\n";
     data +=
       "To include perforation friction use '1' below, else use '2'. \n" +
-      includePerforationFriction_val +
+      this.state.formData.fileData.includePerforationFriction +
       "\n";
 
-    data += "Enter payzone thickness (m) \n" + payZoneThickness_val + "\n";
+    data += "Enter payzone thickness (m) \n" + this.state.formData.fileData.payZoneThickness + "\n";
     data +=
       "Enter if stress barriers are : 'symmetric' or 'asymmetric' or 'no_barrier' below \n" +
-      stressBarriers_val +
+      this.state.formData.fileData.stressBarriers +
       "\n";
     data +=
       "Enter excess stress in top and bottom barriers respectively (Pa)- for symmetric case use same values \n" +
-      excessStressTopBottom_val +
+      this.state.formData.fileData.excessStressTopBottom +
       "\n";
     data +=
       "Maximum value of excess height growth allowed into top and bottom barriers respectively (m)- for symmetric ase use same values \n" +
-      maxHeightGrowth_val +
+      this.state.formData.fileData.maxHeightGrowth +
       "\n";
     data +=
       "Fluid Leak-off model: Enter'1' for carter model, Enter '2' for pressure dependent (diffusion model) leak-off, Enter '3' to ignore leak-off \n" +
-      fluidLeakModel_val +
+      this.state.formData.fileData.fluidLeakModel +
       "\n";
     data +=
       "ROCK ELASTIC MODULI (YOUNG'S MODULUS AND POISSON'S RATIO)				  	 (Pa,---) \n" +
-      youngModulus_val +
+      this.state.formData.fileData.youngModulus +
       "," +
-      poissonRatio_val +
+      this.state.formData.fileData.poissonRatio +
       "\n";
     data +=
       "FRACTURE TOUGHNESS OF THE ROCK,porosity,permeability and initial pore pressure                           (Pa.m^(0.5),NA,m^2,Pa) \n" +
-      fractureToughness_val +
+      this.state.formData.fileData.fractureToughness +
       "," +
-      porosity_val +
+      this.state.formData.fileData.porosity +
       "," +
-      permeability_val +
+      this.state.formData.fileData.permeability +
       "," +
-      initialPorePressure_val +
+      this.state.formData.fileData.initialPorePressure +
       "\n";
     data +=
       "Enter fracture toughness in vertical direction for top and bottom bounding layers in the order seperated by comma (Pa.m^(0.5)) \n" +
-      fractureToughnessTop_val +
+      this.state.formData.fileData.fractureToughnessTop +
       "," +
-      fractureToughnessBottom_val +
+      this.state.formData.fileData.fractureToughnessBottom +
       "\n";
 
     data +=
       "IN-SITU STRESS FIELD IN GLOBAL AXES (SXX,SYY,SXY)  (Pa,Pa,Pa) (compression is negative) \n" +
       "Enter the constants a,b,c in the function SXX=aX+bY+c (a,b has units of Pa/m and c is Pa) (X is always direction of wellbore) \n" +
-      errorConstInStressSxxFunc_val +
+      this.state.formData.fileData.errorConstInStressSxxFunc +
       "\n";
     data +=
       "Enter the constants a,b,c in the function SYY=aX+bY+c (a,b has units of Pa/m and c is Pa) (Y is always direction perpendicular to wellbore) \n" +
-      errorConstInStressSyyFunc_val +
+      this.state.formData.fileData.errorConstInStressSyyFunc +
       "\n";
     data +=
       "Enter the constants a,b,c in the function SXY=aX+bY+c (a,b has units of Pa/m and c is Pa) (X is always direction of wellbore) \n" +
-      errorConstInStressSxyFunc_val +
+      this.state.formData.fileData.errorConstInStressSxyFunc +
       "\n";
 
     data +=
       "To activate non-planar fracture propagation enter 1. For planar propagation enter 2 \n" +
-      nonPlanar_val +
+      this.state.formData.fileData.nonPlanar +
       "\n";
     data +=
       "To completely turn-off shear interaction between the fractures, enter 2, to keep shear interaction, enter 1 \n" +
-      shearInteraction_val +
+      this.state.formData.fileData.shearInteraction +
       "\n";
 
     data +=
       "Choose between fixed contact aperture (Enter 1 below) or variable contact aperture (Enter 2 below) for the fracture contact criterion during shut-in \n" +
-      fixedContactAperture_val +
+      this.state.formData.fileData.fixedContactAperture +
       "\n";
     data +=
       "If fixed contact is selected above, Enter the value of constant contact aperture for all fractures (m) \n" +
-      constantContactAperture_val +
+      this.state.formData.fileData.constantContactAperture +
       "\n";
     data +=
       "If variable contact aperture is chosen, indicate its value as % of fracture widths right before injection shutin \n" +
-      percentageFractureWidths_val +
+      this.state.formData.fileData.percentageFractureWidths +
       "\n";
     data +=
       "Enter sigma_ref (stress at which fracture aperture reduced by 90%) (Pa) \n" +
-      enterSigmaRef_val +
+      this.state.formData.fileData.enterSigmaRef +
       "\n";
     data +=
       "Enter the percentage of retained widths for previous stage fractures for stage to stage stress shadow calculation (%) \n" +
-      percentageStageFractures_val +
+      this.state.formData.fileData.percentageStageFractures +
       "\n";
 
     data +=
       "For printing tecplot results, enter timestep skip values during injection and shutin below seperated by comma. \n" +
-      timeSkip_val +
+      this.state.formData.fileData.timeSkip +
       "\n";
     data +=
       "To display contours as scatter points enter 1. To display results as continuous contour surfaces enter 2 \n" +
-      displayContours_val +
+      this.state.formData.fileData.displayContours +
       "\n";
 
     const textToBLOB = new Blob([data], { type: "text/plain" });
     const sFileName = "PROPERTIES_INPUT.txt"; // The file to save the data.
+
 
     let newLink = document.createElement("a");
     newLink.download = sFileName;
@@ -495,6 +392,8 @@ class RockwellAndWellBornContainer extends Component {
     newLink.click();
   };
 
+    // Create a reference to the hidden file input element
+   
   render() {
     return (
       <div>
@@ -573,18 +472,11 @@ class RockwellAndWellBornContainer extends Component {
 
         <Button variant="primary" type="submit" onClick={this.handleSubmit}>
           Submit
-        </Button>
-        <Col lg="3" style={{ marginTop: 30 }}>
-          <Form.Group>
-            <Form.File
-              id="exampleFormControlFile1"
-              onChange={this.handleRead}
-            />
-            {/* <Button type="submit" onClick={this.handleRead}>
-              Read from a file
-            </Button> */}
-          </Form.Group>
-        </Col>
+        </Button>{"   "}
+        <FileUploader handleFile={this.handleRead}/>
+  
+            
+          
       </div>
       // <Tabs
       //   defaultActiveKey="wellBoreAndPerfData"
