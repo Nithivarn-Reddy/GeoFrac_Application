@@ -1,0 +1,23 @@
+.wells-n-stages {
+  .wells {
+    width: 100%;
+
+    .wells-pills {
+      li {
+        border: 1px solid #333;
+        padding: 5px 16px;
+      }
+
+      li.active {
+        background-color: rgb(10, 112, 207);
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .stages {
+  }
+}

@@ -1,0 +1,62 @@
+.stages-form {
+  min-height: 500px;
+  background-color: #deefff;
+
+  .heading-groups {
+    .stage-headers {
+      flex: 1;
+      font-size: 18px;
+    }
+  }
+
+  .schedule-input-wraper {
+    background-color: #dfdfdf;
+    min-height: 260px;
+    margin-bottom: 20px;
+
+    .input-wraper {
+      .num-input {
+        flex: 1;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .stages-form {
+    flex-direction: column;
+
+    .schedule-division-wraper {
+      display: flex;
+      flex-direction: row !important;
+      margin: 20px 10px;
+
+      .heading-groups {
+        flex-direction: column;
+
+        .stage-headers {
+          flex: 1;
+          font-size: 18px;
+        }
+      }
+
+      .schedule-input-wraper {
+        display: flex;
+        .input-wraper {
+          flex-direction: column;
+          .num-input {
+            flex: 1;
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

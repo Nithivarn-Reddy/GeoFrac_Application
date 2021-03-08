@@ -7,7 +7,7 @@ class PlotsNavBar extends Component {
     return (
       <Navbar bg="primary" variant="dark">
         <Nav className="mr-auto">
-          <Nav.Link href="countour">Coutour</Nav.Link>
+          <Nav.Link href="contour">Contour</Nav.Link>
           <Nav.Link href="linePlot">Line Plot</Nav.Link>
         </Nav>
       </Navbar>

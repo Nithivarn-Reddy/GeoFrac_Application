@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Form, Col, Button, Alert } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import FileUploader from "../customComponents/FileUploader";
-import AlertsComp from "../customComponents/Alerts";
-// import {NotificationContainer, NotificationManager} from 'react-notifications';
-// import { toast, ToastContainer, MDBContainer, MDBBtn } from 'mdbreact';
+
 
 class FldInput extends Component {
   state = {formData: {
