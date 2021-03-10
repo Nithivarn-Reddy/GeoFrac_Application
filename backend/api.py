@@ -12,7 +12,7 @@ import sys
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
-# import matplot.tri as tri
+import matplotlib.tri as tri
 from flask import request, jsonify ,send_file
 
 db = flask_sqlalchemy.SQLAlchemy()
@@ -203,16 +203,38 @@ def get_all_users():
         user_details.append(user_d)
     return {'users': user_details}, 200
 
-
-@app.route('/plot', methods=['GET'])
+@app.route('/api/cartesianPlot', methods=['POST'])
 def CartesianGraph():
+    request = flask.request.get_json(force=True)
+    fileName = request.get('fileName', None)
+    print("FileName is :", fileName)
+    if fileName is None:
+        return "Error: No fileName field provided. Please specify an fileName."
+    # file = 'C:/R3D/HF_PST_PROCESSING_OUTPUT_FILES/' + fileName + '.dat'
+    file = '/home/nithivarn/Downloads/' + fileName + '.dat'
+    data = pd.read_csv(file, header=None, skiprows=3)
+    data1 = data[0].str.split(expand=True)
+    X, Y, Z = data1[0].astype('float').values, data1[1].astype('float').values, data1[2].astype('float').values
+    print(Z)
+    triang = tri.Triangulation(X, Y)
+    tcf = plt.tricontourf(triang, Z, cmap='jet')
+    plt.title(fileName, fontsize=14, fontweight='bold')
+    plt.xlabel('X', fontsize=14, fontweight='bold')
+    plt.ylabel('Y', fontsize=14, fontweight='bold')
+    plt.colorbar()
+    # plt.show()
+    plt.savefig(fileName+'.png')
+    return send_file(fileName+".png", mimetype='image/gif')
+
+@app.route('/plot', methods=['POST'])
+def LinePlot():
     request = flask.request.get_json(force=True)
     fileName = request.get('fileName', None)
     if fileName is None:
         return "Error: No fileName field provided. Please specify an fileName."
 
-    file = 'C:/R3D/HF_PROJECT_DATA/'+fileName+'.dat'
-    # file = '/home/nithivarn/Downloads/' + fileName + '.dat'
+    #file = 'C:/R3D/HF_PROJECT_DATA/'+fileName+'.dat'
+    file = '/home/nithivarn/Downloads/' + fileName + '.dat'
     data = pd.read_csv(file, skiprows=4, delim_whitespace=True, names=['x', 'y'])
     X, Y = data['x'].values, data['y'].values
 
@@ -232,9 +254,9 @@ def CartesianGraph():
     plt.plot(X, Y)
     plt.xlabel(xaxis)
     plt.ylabel(yaxis)
-    plt.show()
-    plt.savefig('scatter.png')
-    return send_file("scatter.png", mimetype='image/gif')
+    # plt.show()
+    plt.savefig(fileName+'.png')
+    return send_file(fileName+".png", mimetype='image/gif')
 
 # Run the example
 if __name__ == '__main__':

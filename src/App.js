@@ -10,10 +10,11 @@ import FldInput from "./components/FldInput";
 import Login from "./components/Login";
 import Users from "./components/Users";
 import AddUser from "./components/AddUser";
-import FileReadWrite from "./components/wells-n-stages"
-import './styles/index.scss';
-import Contour from './components/Contour';
-import { Component } from 'react';
+import FileReadWrite from "./components/wells-n-stages";
+import "./styles/index.scss";
+import Contour from "./components/Contour";
+import { Component } from "react";
+import LinePlot from "./components/LinePlot";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/wellboreRockData" exact={true}>
             <RockwellAndWellBornContainer />
           </Route>
-          <Route path="/pumpingData" component={FileReadWrite} exact/>
+          <Route path="/pumpingData" component={FileReadWrite} exact />
           {/* <Route path="/pumpingData" exact>
             <PumpingSchedule /> */}
           {/* </Route> */}
@@ -45,6 +46,10 @@ function App() {
           <Route path="/users" exact>
             {" "}
             <Users />
+          </Route>
+          <Route path="/linePlot" exact>
+            {" "}
+            <LinePlot />
           </Route>
           <Route path="/addnewuser" exact>
             {" "}
