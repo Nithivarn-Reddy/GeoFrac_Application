@@ -19,6 +19,16 @@ class LinePlot extends Component {
     this.setState({ formData });
   }
 
+  handleDownload = () =>{
+    const url = window.URL.createObjectURL(this.state.formData["image"]);
+    const link = document.createElement('a');
+    link.href = url;
+    let name = this.state.formData[this.state.formData["option"]]+".jpeg"
+    link.setAttribute('download', name);
+    document.body.appendChild(link);
+    link.click();
+  };
+
   handleChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -74,7 +84,7 @@ class LinePlot extends Component {
         <div>
           <NavBar />
           <PlotsNavBar />
-          <div style={{ width: "600px" }}>
+          <div style={{ width: "400px"}}>
             <Form>
               <ButtonGroup>
                 <Button
@@ -138,8 +148,16 @@ class LinePlot extends Component {
       return (
         <div>
           <img
-            src={window.webkitURL.createObjectURL(this.state.formData["image"])}
-          />
+            src={window.webkitURL.createObjectURL(this.state.formData["image"])}/>
+            <div>
+              <Button href="/contour" variant="primary" type="back">
+              Back
+          </Button>
+          {" "}
+          <Button variant="primary" type="download" onClick={this.handleDownload}>
+              Download
+          </Button>
+          </div> 
         </div>
       );
     }

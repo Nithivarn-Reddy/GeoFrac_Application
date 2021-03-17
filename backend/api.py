@@ -210,31 +210,34 @@ def CartesianGraph():
     print("FileName is :", fileName)
     if fileName is None:
         return "Error: No fileName field provided. Please specify an fileName."
-    # file = 'C:/R3D/HF_PST_PROCESSING_OUTPUT_FILES/' + fileName + '.dat'
-    file = '/home/nithivarn/Downloads/' + fileName + '.dat'
+    file = 'C:/R3D/HF_PST_PROCESSING_OUTPUT_FILES/' + fileName + '.dat'
+    # file = '/home/nithivarn/Downloads/' + fileName + '.dat'
     data = pd.read_csv(file, header=None, skiprows=3)
     data1 = data[0].str.split(expand=True)
     X, Y, Z = data1[0].astype('float').values, data1[1].astype('float').values, data1[2].astype('float').values
-    print(Z)
+    fig = plt.figure()
+
     triang = tri.Triangulation(X, Y)
     tcf = plt.tricontourf(triang, Z, cmap='jet')
     plt.title(fileName, fontsize=14, fontweight='bold')
     plt.xlabel('X', fontsize=14, fontweight='bold')
     plt.ylabel('Y', fontsize=14, fontweight='bold')
     plt.colorbar()
-    # plt.show()
     plt.savefig(fileName+'.png')
     return send_file(fileName+".png", mimetype='image/gif')
 
-@app.route('/plot', methods=['POST'])
+@app.route('/api/plot', methods=['POST'])
 def LinePlot():
     request = flask.request.get_json(force=True)
     fileName = request.get('fileName', None)
+    fig = plt.figure()
+
     if fileName is None:
         return "Error: No fileName field provided. Please specify an fileName."
+    fig = plt.figure()
 
-    #file = 'C:/R3D/HF_PROJECT_DATA/'+fileName+'.dat'
-    file = '/home/nithivarn/Downloads/' + fileName + '.dat'
+    file = 'C:/R3D/HF_PROJECT_DATA/'+fileName+'.dat'
+    # file = '/home/nithivarn/Downloads/' + fileName + '.dat'
     data = pd.read_csv(file, skiprows=4, delim_whitespace=True, names=['x', 'y'])
     X, Y = data['x'].values, data['y'].values
 
@@ -257,6 +260,11 @@ def LinePlot():
     # plt.show()
     plt.savefig(fileName+'.png')
     return send_file(fileName+".png", mimetype='image/gif')
+
+@app.route('/api/examples', methods=['POST'])
+def examples_files():
+    file = 'D:/R3D_New_Examples.rar'
+    return send_file(file,  as_attachment=True)
 
 # Run the example
 if __name__ == '__main__':

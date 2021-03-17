@@ -15,6 +15,7 @@ import "./styles/index.scss";
 import Contour from "./components/Contour";
 import { Component } from "react";
 import LinePlot from "./components/LinePlot";
+import Examples from "./components/Examples";
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
             <Contour />
           </Route>
           <Route path="/manual" exact />
+          <Route path="/examples" exact>
+            <Examples />
+          </Route>
           <Route path="/users" exact>
             {" "}
             <Users />

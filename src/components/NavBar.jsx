@@ -84,6 +84,9 @@ class NavBar extends Component {
               <NavLink className="nav-link" to="/manual">
                 Manual
               </NavLink>
+              <NavLink className="nav-link" to="/examples">
+                Examples Files
+              </NavLink>
               <NavLink
                 className="nav-link"
                 id="logout"

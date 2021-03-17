@@ -21,6 +21,16 @@ class LinePlot extends Component {
     this.setState({ formData });
   }
 
+  handleDownload = () =>{
+    const url = window.URL.createObjectURL(this.state.formData["image"]);
+    const link = document.createElement('a');
+    link.href = url;
+    let name = this.state.formData[this.state.formData["option"]]+".jpeg"
+    link.setAttribute('download', name);
+    document.body.appendChild(link);
+    link.click();
+  };
+  
   handleChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -39,7 +49,7 @@ class LinePlot extends Component {
     console.log("submit clicked");
     if (localStorage.getItem("jwt-token") !== null) {
       let token = "Bearer " + JSON.parse(localStorage.getItem("jwt-token")).jwt;
-      const response = await fetch("/plot", {
+      const response = await fetch("/api/plot", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -226,8 +236,17 @@ class LinePlot extends Component {
       return (
         <div>
           <img
-            src={window.webkitURL.createObjectURL(this.state.formData["image"])}
-          />
+            src={window.webkitURL.createObjectURL(this.state.formData["image"])}/>
+            {" "}
+            <div>
+              <Button href="/linePlot" variant="primary" type="back">
+              Back
+          </Button>
+          {" "}
+          <Button variant="primary" type="download" onClick={this.handleDownload}>
+              Download
+          </Button>
+          </div>
         </div>
       );
     }
